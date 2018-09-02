@@ -1,7 +1,7 @@
 # CS753
 
 ## Students
-Thomas Sorrell (tgs1003) - 904880776
-<Add name, username, and IDs here>
+#### Thomas Sorrell (tgs1003) - 904880776
+#### <Add name, username, and IDs here>
 
-##### Code for assignments is in appropriately labled directories (hw1, hw2, etc)
+###### Code for assignments is in appropriately labled directories (hw1, hw2, etc)
