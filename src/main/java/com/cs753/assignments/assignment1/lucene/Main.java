@@ -29,14 +29,12 @@ public class Main {
 		 * Complex Answer Retrieval Data.
 		 */
 
-		/*
-		 * read paragraphs from cbor file and map them keep track of ( ids -> paragraph
-		 * )
-		 */
-		Map<String, String> stringFields = getParagraphsAndMapThem();
 
+		//read paragraphs from cbor file and map them keep track of ( ids -> paragraph)
+		Map<String, String> stringFields = getParagraphsAndMapThem();
 		// index paragraphs
 		Indexer indexer = Indexer.getIndexer();
+
 		/*
 		 * not passing any searchable text at this point. Just indexing. This is why we
 		 * are only using StringFields to index with because there is no tokenization
@@ -87,7 +85,6 @@ public class Main {
 
 			// use trec-car-tools to read paragraphs
 			for (Data.Paragraph p : DeserializeData.iterableParagraphs(fileInputStream)) {
-
 				// iterate through file paragraphs, put id and body to stringFields
 				stringFields.put(p.getParaId(), p.getTextOnly());
 			}
