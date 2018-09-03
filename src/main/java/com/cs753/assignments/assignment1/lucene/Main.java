@@ -6,9 +6,15 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cs753.assignments.assignment1.lucene.search.Indexer;
+import com.cs753.assignments.assignment1.lucene.search.SearchEngine;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+
 import edu.unh.cs.treccar_v2.Data;
 import edu.unh.cs.treccar_v2.read_data.DeserializeData;
-import com.cs753.assignments.assignment1.lucene.search.Indexer;
 
 /**
  * Main class that will run the required indexing and queries for the
@@ -21,7 +27,7 @@ public class Main {
 
 	static String resourcePath = "src/main/resources/test200/test200-train/train.pages.cbor-paragraphs.cbor";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 
 		/*
 		 * Part 1:
@@ -39,11 +45,13 @@ public class Main {
 		Map<String, String> stringFields = getParagraphsAndMapThem();
 		Indexer indexer = Indexer.getIndexer();
 
-		if(!args[0].equals("default"))
-			indexer.setIndexPath(args[0]);
-		if(!args[1].equals("default"))
-			resourcePath = args[1];
-
+		if ( args.length != 0 ) {
+			
+			if (!args[0].equals("default"))
+				indexer.setIndexPath(args[0]);
+			if (!args[1].equals("default"))
+				resourcePath = args[1];
+		}
 		/*
 		 * not passing any searchable text at this point. Just indexing. This is why we
 		 * are only using StringFields to index with because there is no tokenization
@@ -56,19 +64,57 @@ public class Main {
 			throw new IOException("Could not index object");
 		}
 
+		
 		/*
 		 * Part 2:
 		 * 
 		 * Run the following queries and list the paragraph IDs and content of the top
-		 * 10 results. These will need to use SearchEngine and TextFields for
-		 * tokenizing.
+		 * 10 results.
 		 */
-
+		SearchEngine se = new SearchEngine();
+		
+		if ( args.length != 0 ) {
+			
+			if(!args[0].equals("default"))
+				se.setIndexPath(args[0]);
+		}
+		
 		// Q1 "power nap benefits"
-
+		TopDocs powerDocs = se.performSearch( "power nap benefits", 10 );
 		// Q2 "whale vocalization production sound
-
+		TopDocs whaleDocs = se.performSearch( "whale vocalization production sound", 10 );
 		// Q3 pokemon puzzle league
+		TopDocs pokemonDocs = se.performSearch( "pokemon puzzle league", 10 );
+		
+		// obtain the ScoreDocs
+		ScoreDoc[] powerHits = powerDocs.scoreDocs;
+		ScoreDoc[] whaleHits = whaleDocs.scoreDocs;
+		ScoreDoc[] pokemonHits = pokemonDocs.scoreDocs;
+		
+		/* 
+		 * retrieve each matching document
+		 * then iterate through paragraphs to print id and content
+		 * or can you use indexes to look at this?
+		 */
+		
+		// at the moment just printing to try to see what im getting
+		for ( int i = 0; i < powerHits.length; i++ ) {
+			
+			Document powerDoc = se.getDocument( powerHits[i].doc );
+			System.out.println("power: " + powerDoc.toString() );
+		}
+		
+		for ( int i = 0; i < whaleHits.length; i++ ) {
+			
+			Document whaleDoc = se.getDocument( whaleHits[i].doc );
+			System.out.println("whale: " + whaleDoc.toString() );
+		}
+		
+		for ( int i = 0; i < pokemonHits.length; i++ ) {
+			
+			Document pokemonDoc = se.getDocument( pokemonHits[i].doc );
+			System.out.println("pokemon: " + pokemonDoc.toString() );
+		}
 
 	}
 
