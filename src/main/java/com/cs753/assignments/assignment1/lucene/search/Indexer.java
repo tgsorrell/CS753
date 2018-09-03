@@ -26,6 +26,7 @@ public class Indexer {
 	
 	private IndexWriter indexWriter = null;
 	private static Indexer indexer = null;
+	private String indexPath = "src/main/java/com/cs753/assignments/assignment1/lucene/indexes";
 	
 	private Indexer() {}
 	
@@ -36,6 +37,10 @@ public class Indexer {
 			indexer = new Indexer();
 		}
 		return indexer;
+	}
+
+	public void setIndexPath(String path){
+		indexPath = path;
 	}
 	
 	/**
@@ -55,7 +60,7 @@ public class Indexer {
 		if ( indexWriter == null ) {
 			
 			try {
-				Path path = Paths.get( "src/main/java/com.cs753.assignments.assignment1.lucene/indexes" );
+				Path path = Paths.get(indexPath);
 				Directory indexDir = FSDirectory.open( path );
 				
 				IndexWriterConfig config = new IndexWriterConfig( new StandardAnalyzer() );

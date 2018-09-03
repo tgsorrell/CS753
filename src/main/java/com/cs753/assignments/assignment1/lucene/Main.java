@@ -19,21 +19,30 @@ import com.cs753.assignments.assignment1.lucene.search.Indexer;
  */
 public class Main {
 
+	static String resourcePath = "src/main/resources/test200/test200-train/train.pages.cbor-paragraphs.cbor";
+
 	public static void main(String[] args) throws IOException {
 
 		/*
 		 * Part 1:
-		 * 
+		 *
 		 * Use Lucene to create an index of the paragraphs of
 		 * train.test200.cbor.paragraphs contained in the "test200" dataset of the TREC
 		 * Complex Answer Retrieval Data.
 		 */
 
+		//Parse arguments
+		if(args.length < 2)
+			System.out.println("Usage: java Main <index directory> <resource directory>");
 
 		//read paragraphs from cbor file and map them keep track of ( ids -> paragraph)
 		Map<String, String> stringFields = getParagraphsAndMapThem();
-		// index paragraphs
 		Indexer indexer = Indexer.getIndexer();
+
+		if(!args[0].equals("default"))
+			indexer.setIndexPath(args[0]);
+		if(!args[1].equals("default"))
+			resourcePath = args[1];
 
 		/*
 		 * not passing any searchable text at this point. Just indexing. This is why we
@@ -80,7 +89,7 @@ public class Main {
 		 * trec-car-tools-java-12.jar -> edu.unh.cs.treccar_v2 -> read_data
 		 */
 		try {
-			final File file = new File("src/main/resources/test200/test200-train/train.pages.cbor-paragraphs.cbor");
+			final File file = new File(resourcePath);
 			final FileInputStream fileInputStream = new FileInputStream(file);
 
 			// use trec-car-tools to read paragraphs
