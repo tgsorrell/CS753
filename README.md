@@ -15,4 +15,4 @@ Our codebase is setup to work with Maven. Run `mvn clean compile` followed by `m
               `<argument>default</argument>` <br />
               `<argument>default</argument>` <br />
             `</arguments>`<br />
-Simply change the default argument lines to the directories desired. The first argument is the output directory for the index, and the second is the directory for the paragraphs.cbor file
+Simply change the default argument lines to the directories desired. The first argument is the output directory for the index, and the second is the directory for the paragraphs.cbor file. However, the defaults should work just fine as is, so you only need to change this if you want to.
