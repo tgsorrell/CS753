@@ -2,7 +2,7 @@
 
 ## Students
 #### Thomas Sorrell (tgs1003) - 904880776
-#### John Schlim
+#### John Schlim (jws1014) - 933327769
 #### Luxing Zeng(lz1008) -901447311
 #### Timothy Ward
 
