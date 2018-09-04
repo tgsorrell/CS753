@@ -33,9 +33,9 @@ public class Indexer {
 	public static Indexer getIndexer() {
 		
 		if ( indexer == null ) {
-			
 			indexer = new Indexer();
 		}
+
 		return indexer;
 	}
 
@@ -99,18 +99,23 @@ public class Indexer {
 		} catch ( IOException e ) {
 			throw new IOException("Could not get IndexWriter");
 		}
-		
-		Document doc = new Document();
-		
+
+		writer.deleteAll();
 		// add all StringFields to the document
 		if ( stringFields != null && !stringFields.isEmpty() ) {
 			
 			for (Entry<String, String> stringEntry : stringFields.entrySet()) {
 
-				doc.add(new StringField(stringEntry.getKey(), stringEntry.getValue(), Field.Store.YES));
+				Document doc = new Document();
+				doc.add(new StringField("id", stringEntry.getKey(), Field.Store.YES));
+				doc.add(new StringField("text", stringEntry.getValue(), Field.Store.YES));
+				writer.addDocument(doc);
 			}
 		}
-		
+
+		writer.commit();
+		writer.close();
+		/*
 		// add all TextFields to the document
 		if ( textFields != null && !textFields.isEmpty() ) {
 			
@@ -118,8 +123,8 @@ public class Indexer {
 
 				doc.add(new TextField(textEntry.getKey(), textEntry.getValue(), Field.Store.YES));
 			}
-		}
+		}*/
 		
-		writer.addDocument(doc);
+
 	}
 }

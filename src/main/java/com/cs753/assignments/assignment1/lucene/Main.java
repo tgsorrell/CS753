@@ -47,13 +47,15 @@ public class Main {
 		Map<String, String> stringFields = getParagraphsAndMapThem();
 		Indexer indexer = Indexer.getIndexer();
 
-		if ( args.length != 0 ) {
 			
-			if (!args[0].equals("default"))
-				indexer.setIndexPath(args[0]);
-			if (!args[1].equals("default"))
-				resourcePath = args[1];
+		if (!args[0].equals("default")) {
+			indexer.setIndexPath(args[0]);
+			SearchEngine.setIndexPath(args[0]);
 		}
+		if (!args[1].equals("default"))
+			resourcePath = args[1];
+
+
 		/*
 		 * not passing any searchable text at this point. Just indexing. This is why we
 		 * are only using StringFields to index with because there is no tokenization
@@ -74,13 +76,7 @@ public class Main {
 		 * 10 results.
 		 */
 		SearchEngine se = new SearchEngine();
-		
-		if ( args.length != 0 ) {
-			
-			if(!args[0].equals("default"))
-				se.setIndexPath(args[0]);
-		}
-		
+
 		// Q1 "power nap benefits"
 		TopDocs powerDocs = se.performSearch( "power nap benefits", 10 );
 		// Q2 "whale vocalization production sound

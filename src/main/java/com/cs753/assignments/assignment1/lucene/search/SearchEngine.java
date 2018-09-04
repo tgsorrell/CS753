@@ -29,16 +29,15 @@ public class SearchEngine {
 
 	private IndexSearcher searcher = null;
 	private QueryParser parser = null;
-	private String indexPath = "src/main/java/com/cs753/assignments/assignment1/lucene/indexes";
+	private static String indexPath = "src/main/java/com/cs753/assignments/assignment1/lucene/indexes";
 	
 	public SearchEngine() throws IOException {
 		
 		try {
-			
-			Path path = Paths.get( indexPath );
+			Path path = Paths.get(indexPath);
 			searcher = new IndexSearcher( DirectoryReader.open( FSDirectory.open( path )));
 		} catch (IOException e) {
-			throw new IOException("Bad Path");
+			e.printStackTrace();
 		}
 			/*
 			 * There's a very common mistakes that people often make, 
@@ -55,7 +54,7 @@ public class SearchEngine {
 		
 	}
 	
-	public void setIndexPath(String path){
+	public static void setIndexPath(String path){
 		indexPath = path;
 	}
 	
