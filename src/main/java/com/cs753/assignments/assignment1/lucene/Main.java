@@ -38,8 +38,10 @@ public class Main {
 		 */
 
 		//Parse arguments
-		if(args.length < 2)
+		if(args.length < 2) {
 			System.out.println("Usage: java Main <index directory> <resource directory>");
+			System.exit(1);
+		}
 
 		//read paragraphs from cbor file and map them keep track of ( ids -> paragraph)
 		Map<String, String> stringFields = getParagraphsAndMapThem();
