@@ -3,7 +3,7 @@
 ## Students
 #### Thomas Sorrell (tgs1003) - 904880776
 #### John Schlim
-#### Luxing Zeng
+#### Luxing Zeng(lz1008) -901447311
 #### Timothy Ward
 
 ###### Code for assignments is in appropriately labled directories (hw1, hw2, etc)
