@@ -50,7 +50,7 @@ public class SearchEngine {
 			 * In our example, since we created IndexWriter using StandardAnalyzer before, 
 			 * we are also passing StandardAnalyzer to QueryParser.
 			 */
-			parser = new QueryParser( "content", new StandardAnalyzer() );
+			parser = new QueryParser( "id", new StandardAnalyzer() );
 		
 	}
 	

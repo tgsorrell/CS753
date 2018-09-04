@@ -10,7 +10,6 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
@@ -115,16 +114,5 @@ public class Indexer {
 
 		writer.commit();
 		writer.close();
-		/*
-		// add all TextFields to the document
-		if ( textFields != null && !textFields.isEmpty() ) {
-			
-			for (Map.Entry<String, String> textEntry : textFields.entrySet()) {
-
-				doc.add(new TextField(textEntry.getKey(), textEntry.getValue(), Field.Store.YES));
-			}
-		}*/
-		
-
 	}
 }

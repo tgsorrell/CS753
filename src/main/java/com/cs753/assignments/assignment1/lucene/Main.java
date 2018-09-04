@@ -83,7 +83,7 @@ public class Main {
 		TopDocs whaleDocs = se.performSearch( "whale vocalization production sound", 10 );
 		// Q3 pokemon puzzle league
 		TopDocs pokemonDocs = se.performSearch( "pokemon puzzle league", 10 );
-		
+
 		// obtain the ScoreDocs
 		ScoreDoc[] powerHits = powerDocs.scoreDocs;
 		ScoreDoc[] whaleHits = whaleDocs.scoreDocs;
@@ -94,12 +94,12 @@ public class Main {
 		 * then iterate through paragraphs to print id and content
 		 * or can you use indexes to look at this?
 		 */
-		
+
 		// at the moment just printing to try to see what im getting
 		for ( int i = 0; i < powerHits.length; i++ ) {
-			
+			System.out.println("Query not empty");
 			Document powerDoc = se.getDocument( powerHits[i].doc );
-			System.out.println("power: " + powerDoc.toString() );
+			System.out.println("power: " + powerDoc.toString());
 		}
 		
 		for ( int i = 0; i < whaleHits.length; i++ ) {
