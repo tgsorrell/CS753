@@ -50,7 +50,7 @@ public class SearchEngine {
 			 * In our example, since we created IndexWriter using StandardAnalyzer before, 
 			 * we are also passing StandardAnalyzer to QueryParser.
 			 */
-			parser = new QueryParser( "id", new StandardAnalyzer() );
+			//parser = new QueryParser( "id", new StandardAnalyzer() );
 		
 	}
 	
@@ -59,7 +59,8 @@ public class SearchEngine {
 	}
 	
 	public TopDocs performSearch( String queryString, int n ) throws ParseException, IOException {
-		
+
+		parser = new QueryParser("text", new StandardAnalyzer());
 		Query query = parser.parse( queryString );
 		return searcher.search(query, n);
 	}
