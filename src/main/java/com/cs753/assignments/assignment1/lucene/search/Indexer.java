@@ -10,6 +10,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
@@ -107,7 +108,7 @@ public class Indexer {
 
 				Document doc = new Document();
 				doc.add(new StringField("id", stringEntry.getKey(), Field.Store.YES));
-				doc.add(new StringField("text", stringEntry.getValue(), Field.Store.YES));
+				doc.add(new TextField("text", stringEntry.getValue(), Field.Store.YES));
 				writer.addDocument(doc);
 			}
 		}

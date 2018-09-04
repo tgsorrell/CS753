@@ -95,23 +95,22 @@ public class Main {
 		 * or can you use indexes to look at this?
 		 */
 
-		// at the moment just printing to try to see what im getting
+		System.out.println("\n====Power Nap Docs====\n");
 		for ( int i = 0; i < powerHits.length; i++ ) {
-			System.out.println("Query not empty");
 			Document powerDoc = se.getDocument( powerHits[i].doc );
-			System.out.println("power: " + powerDoc.toString());
+			System.out.println("ID: " + powerDoc.getField("id").stringValue() + "\nParagraph: " + powerDoc.getField("text").stringValue());
 		}
-		
+
+		System.out.println("\n====Whale Vocalization Docs====\n");
 		for ( int i = 0; i < whaleHits.length; i++ ) {
-			
 			Document whaleDoc = se.getDocument( whaleHits[i].doc );
-			System.out.println("whale: " + whaleDoc.toString() );
+			System.out.println("ID: " + whaleDoc.getField("id").stringValue() + "\nParagraph: " + whaleDoc.getField("text").stringValue());
 		}
-		
+
+		System.out.println("\n====Pokemon Puzzle League Docs===\n");
 		for ( int i = 0; i < pokemonHits.length; i++ ) {
-			
 			Document pokemonDoc = se.getDocument( pokemonHits[i].doc );
-			System.out.println("pokemon: " + pokemonDoc.toString() );
+			System.out.println("ID: " + pokemonDoc.getField("id").stringValue() + "\nParagraph: " + pokemonDoc.getField("text").stringValue());
 		}
 
 	}
@@ -127,11 +126,6 @@ public class Main {
 
 		Map<String, String> stringFields = new HashMap<>();
 
-		/*
-		 * I'm trying to use the ReadDataTest.class code under mode.equals("paragraph")
-		 * for this basically. This class is under : Maven Dependencies ->
-		 * trec-car-tools-java-12.jar -> edu.unh.cs.treccar_v2 -> read_data
-		 */
 		try {
 			final File file = new File(resourcePath);
 			final FileInputStream fileInputStream = new FileInputStream(file);
